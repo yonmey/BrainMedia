@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  transmission:
+    container_name: transmission
+    image: dperson/transmission
+    ports:
+      - 9091:9091
+  sickrage:
+    container_name: sickrage
+    build: cortex/sickrage
+    ports:
+      - 8081:8081
+    volumes:
+      - ./hypocampus/sickrage_data/config:/config
+      - ./hypocampus/sickrage_data/blackhole:/blackhole
+      - ./hypocampus/sickrage_data/sorted:/sorted
+      - ./hypocampus/sickrage_data/unsorted:/unsorted
+  lazylibrarian:
+    container_name: lazylibrarian
+    build: cortex/lazylibrarian
+    ports:
+      - 5299:5299
